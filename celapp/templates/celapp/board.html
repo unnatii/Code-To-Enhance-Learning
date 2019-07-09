@@ -1,0 +1,67 @@
+{% extends 'celapp/base.html' %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	{% load static %}
+    <link rel="stylesheet" href="{% static 'tracker/style.css'%}" type="text/css">
+
+
+{% block content %}
+
+
+
+   
+           
+<div class="row">
+        <div class="col">
+			<div class="row justify-content-md-center">
+		     <img src="{% static 'celapp/images/i5.jpg' %}" id="det" style="height:700px;width:700px">
+		 </div>
+		 </div>
+		 
+
+		<div class="col">
+			<div class ="centered">
+                    <table class="table ">
+                            <thead>
+                              <tr>
+                                <th scope="col" class="table-info" colspan="5">Team Details</th>
+                                
+                              </tr>
+                            </thead>
+                            <thead>
+                                    <tr>
+                                  
+                                      <th scope="col">Student 1</th>
+                                      <th scope="col">Student 2</th>
+                                      <th scope="col">Scratch link</th>
+                                      <th scope="col">Concept notes</th>
+                                    </tr>
+                                  </thead>
+                            <tbody>
+                              <tr>
+                     
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                                
+                              </tr>
+                            
+                           
+                            </tbody>
+                          </table>
+                   
+                    
+		</div>
+		   </div>
+		   
+	  </div>
+
+
+		
+		
+
+
+	
+  
+{% endblock %}
