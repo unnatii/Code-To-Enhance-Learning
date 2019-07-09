@@ -1,6 +1,12 @@
 # Code-To-Enhance-Learning
 
 
+### Prerequisites 
+>django 1.11
+
+>python 2.7.10
+
+
 ### Getting Started
 
 >mkdir Product
@@ -11,28 +17,18 @@
 
 >cd productfolder
 
->git clone 
+>git clone https://github.com/unnatii/Code-To-Enhance-Learning.git
 
 >source bin/activate
 
 >sudo pip install django 
 
->cd DailyExpenseTracker
+>cd Code-To-Enhance-Learning
 
 >python manage.py migrate
 
 >python manage.py runserver # starts the server 
 
--**Note: go to browser and open ' localhost:8000/Home '**
-
->register your account
-
--**Note : for superuser:**
->username= root , 
-> password=rootpassword
+-**Note: go to browser and open ' localhost:8000/index '**
 
 
-### Prerequisites 
->django 1.11
-
->python 2.7.10
