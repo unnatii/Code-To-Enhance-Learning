@@ -56,9 +56,9 @@ def register(request):
                 
                 messages.success(request, _('registered successfully '))
                 return redirect('index')
-            # else:
-  #               messages.error(request, _('wrong input given'))
-  #               return redirect('index')
+            else:
+                messages.error(request, _('wrong input given'))
+                return redirect('index')
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
@@ -66,12 +66,12 @@ def register(request):
         })  
     
     
-def register(request):
-     if request.method=='POST':
-         user.username= request.POST.get('username')
-         user.profile.contactname= request.POST.get('contactname')
-       
-            
+# def register(request):
+#      if request.method=='POST':
+#          user.username= request.POST.get('username')
+#          user.profile.contactname= request.POST.get('contactname')
+#
+#       
   
 # def register(request):
 #     if request.method == 'POST':
