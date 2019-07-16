@@ -12,7 +12,7 @@ class Profile(models.Model):
     schoolname = models.CharField(max_length=30, blank=True)
     contactname=models.CharField(max_length=20, blank=True)
     phoneno = models.CharField(max_length=10, blank=True)
-
+    #objects = models.Manager()
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):

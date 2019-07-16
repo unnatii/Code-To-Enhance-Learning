@@ -6,8 +6,9 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth import login ,authenticate
 from django.views.generic import View
-from .forms import UserRegisterForm
+from .forms import UserForm,ProfileForm
 from django.contrib import auth
+from .models import Profile
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
@@ -33,26 +34,66 @@ def details(request):
 def tutor(request):
     return render(request,'celapp/tutor.html')
     
+    
+    
 def register(request):
     if request.method == 'POST':
-            form = RegistrationForm(request.POST)
-            if form.is_valid():
-                user = form.save()
+            user_form = UserForm(request.POST, instance=request.user)
+            profile_form = ProfileForm(request.POST, instance=request.user.profile)
+            if user_form.is_valid() and profile_form.is_valid():
                 user.refresh_from_db()  # load the profile instance created by the signal
                 user.profile.schoolname = form.cleaned_data.get('schoolname')
                 user.profile.contactname = form.cleaned_data.get('contactname')
                 user.profile.phoneno = form.cleaned_data.get('phoneno')
                 user.profile.email = form.cleaned_data.get('email')
-                user.save()
+                user_form.save()
+                profile_form.save()
                 raw_password = form.cleaned_data.get('password1')
+                #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 user = authenticate(username=user.username, password=raw_password)
                 login(request, user)
                 return redirect('index')
+                
+                messages.success(request, _('registered successfully '))
+                return redirect('index')
+            # else:
+  #               messages.error(request, _('wrong input given'))
+  #               return redirect('index')
     else:
-
-         return render(request,'celapp/reg.html')   
-            
+        user_form = UserForm(instance=request.user)
+        profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 'celapp/reg.html',{'user_form': user_form,'profile_form': profile_form
+        })  
     
+    
+def register(request):
+     if request.method=='POST':
+         user.username= request.POST.get('username')
+         user.profile.contactname= request.POST.get('contactname')
+       
+            
+  
+# def register(request):
+#     if request.method == 'POST':
+#             user_form = UserForm(request.POST, instance=request.user)
+#             profile_form = ProfileForm(request.POST, instance=request.user.profile)
+#             if form.is_valid():
+#                 user = form.save()
+#                 user.refresh_from_db()  # load the profile instance created by the signal
+#                 user.profile.schoolname = form.cleaned_data.get('schoolname')
+#                 user.profile.contactname = form.cleaned_data.get('contactname')
+#                 user.profile.phoneno = form.cleaned_data.get('phoneno')
+#                 user.profile.email = form.cleaned_data.get('email')
+#                 user.save()
+#                 raw_password = form.cleaned_data.get('password1')
+#                 user = authenticate(username=user.username, password=raw_password)
+#                 login(request, user)
+#                 return redirect('index')
+#     else:
+#
+#          return render(request,'celapp/reg.html')
+
+#
 # class UserFormView(View):
 #     form_class=UserRegisterForm
 #     template_name='celapp/reg.html'
