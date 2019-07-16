@@ -19,36 +19,32 @@
 	    </button>
 
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		{% if user.is_authenticated %}
+			{% if user.is_authenticated %}
 			<ul class="navbar-nav mr-auto">
 			    
 			      <li class="nav-item">
 			        <a class="nav-link" href="{% url 'board' %}"> Dashboard</a>
 			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="{% url 'tutor' %}">Tutorial</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="{% url 'details' %}">Team Details</a>
-			      </li>
+		
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">
-		  			 <li><a href="{% url 'logout' %}"><span ></span>   Log-out </align></a></li>
-		  		 </ul>
-		  			{% else %}
-			
-		  			 <ul class="nav navbar-nav navbar-right">
-		  			  <li><a href="{% url 'reg' %}"><span ></span> Register   </a></li>
-		  		&nbsp
-		  		&nbsp
-		  		&nbsp
-		  			  <li><a href="{% url 'login' %}"><span ></span>   Log-In </align></a></li>
-			
-		  			  </ul>
-		  			  {% endif %}
-	     
-		  	    </div>
-		  	  </nav>
+
+		 <li><a href="{% url 'logout' %}"><span ></span>   Log-out </align></a></li>
+	 </ul>
+		{% else %}
+		
+		 <ul class="nav navbar-nav navbar-right">
+		  <li><a href="{% url 'register' %}"><span ></span> Register   </a></li>
+	&nbsp
+	&nbsp
+	&nbsp
+		  <li><a href="{% url 'login' %}"><span ></span>   Log-In </align></a></li>
+		
+		  </ul>
+		  {% endif %}
+     
+    </div>
+  </nav>
 	  <div class="col-md-12" >
 	  {% if messages %}
 	  {% for message in messages %}

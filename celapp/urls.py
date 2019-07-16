@@ -7,4 +7,6 @@ urlpatterns = [
         url(r'^board/', views.board, name='board'),
         url(r'^tutor/', views.tutor, name='tutor'),
         url(r'^details/', views.details, name='details'),
+        
+        
 ]
