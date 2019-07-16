@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from celapp import views
 urlpatterns = [
     url('',include('celapp.urls')),
     url(r'^admin/', admin.site.urls),
+    url('login/',auth_views.LoginView.as_view(template_name='celapp/login.html'),name='login'),
+       url('logout/',auth_views.LogoutView.as_view(template_name='celapp/logout.html'),name='logout'),
+      # url(r'^reg/', views.UserFormView.as_view(), name='reg'),
+       url(r'^register/', views.register, name='register'),
 ]
