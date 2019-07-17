@@ -31,4 +31,6 @@
 
 -**Note: go to browser and open ' localhost:8000/index '**
 
-
+-**superuser**-
+>username- owner
+>password- qwertyuiop
