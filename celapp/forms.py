@@ -19,7 +19,14 @@ class UserForm(UserCreationForm):
             'password2'
         )
 
+
+ROLES= [
+    ('Teacher', 'Teacher'),
+    ('Parent', 'Parent'),
+
+    ]
 class ProfileForm(forms.ModelForm):
+    role= forms.CharField(label='teacher or parent ', widget=forms.Select(choices=ROLES))
     class Meta:
         model = Profile
         fields = ('schoolname', 'contactname', 'phoneno','role')

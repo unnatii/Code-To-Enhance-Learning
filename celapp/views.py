@@ -51,17 +51,15 @@ def register(request):
                 raw_password = form.cleaned_data.get('password1')
                 #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 user = authenticate(username=user.username, password=raw_password)
-                login(request, user)
-                return redirect('index')
-                
+                login()
                 messages.success(request, _('registered successfully '))
                 return redirect('index')
             else:
                 messages.error(request, _('wrong input given'))
-                return redirect('index')
+                return redirect('register')
     else:
-        user_form = UserForm(instance=request.user)
-        profile_form = ProfileForm(instance=request.user.profile)
+        user_form = UserForm()
+        profile_form = ProfileForm()
     return render(request, 'celapp/reg.html',{'user_form': user_form,'profile_form': profile_form
         })  
     
