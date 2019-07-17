@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
+
+from __future__ import unicode_literals
+from django.contrib import messages
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -9,10 +11,13 @@ from django.views.generic import View
 from .forms import UserForm,ProfileForm
 from django.contrib import auth
 from .models import Profile
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+#import ipdb
 @login_required
 def index(request):
+    
     # current_user = auth.get_user(request)
  #    if(current_user.username=='student'):
  #        return render(request,'celapp/student.html')
@@ -37,25 +42,35 @@ def tutor(request):
     
     
 def register(request):
+  #  ipdb.set_trace()
+  #  ipdb.set_trace(context=5)
     if request.method == 'POST':
-            user_form = UserForm(request.POST, instance=request.user)
-            profile_form = ProfileForm(request.POST, instance=request.user.profile)
+            user_form = UserForm(request.POST)
+            profile_form = ProfileForm(request.POST)
             if user_form.is_valid() and profile_form.is_valid():
-                user.refresh_from_db()  # load the profile instance created by the signal
-                user.profile.schoolname = form.cleaned_data.get('schoolname')
-                user.profile.contactname = form.cleaned_data.get('contactname')
-                user.profile.phoneno = form.cleaned_data.get('phoneno')
-                user.profile.email = form.cleaned_data.get('email')
-                user_form.save()
-                profile_form.save()
-                raw_password = form.cleaned_data.get('password1')
-                #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                user = authenticate(username=user.username, password=raw_password)
-                login()
-                messages.success(request, _('registered successfully '))
-                return redirect('index')
+                user = user_form.save(commit=False)
+                user.save()
+                profile = profile_form.save(commit=False)
+                profile.user = user
+                profile.save()
+#                user.refresh_from_db()  # load the profile instance created by the signal
+                
+                # user.profile.schoolname = form.cleaned_data.get('schoolname')
+#                 user.profile.contactname = form.cleaned_data.get('contactname')
+#                 user.profile.phoneno = form.cleaned_data.get('phoneno')
+#                 user.profile.email = form.cleaned_data.get('email')
+#                 user_form.save()
+#                 profile_form.save()
+#                 raw_password = form.cleaned_data.get('password1')
+#                 user.username=form.cleaned_data.get('email')
+#                 user.password=raw_password
+#                 #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+#                 #user = authenticate(username=user.username, password=raw_password)
+#                 login()
+                messages.success(request, 'registered successfully ')
+                return redirect('login')
             else:
-                messages.error(request, _('wrong input given'))
+                messages.error(request, 'wrong input given')
                 return redirect('register')
     else:
         user_form = UserForm()

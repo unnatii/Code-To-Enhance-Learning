@@ -29,7 +29,7 @@ class ProfileForm(forms.ModelForm):
     role= forms.CharField(label='teacher or parent ', widget=forms.Select(choices=ROLES))
     class Meta:
         model = Profile
-        fields = ('schoolname', 'contactname', 'phoneno','role')
+        fields = ('role','schoolname', 'contactname', 'phoneno')
         
 
 # # ROLES= [
