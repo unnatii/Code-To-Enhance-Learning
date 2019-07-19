@@ -7,6 +7,19 @@
 
 {% block content %}
 
-student details
+<div class="container" >
+    <div > 
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Register Teams!</legend>
+          {{ team_form.as_p }}
+      </fieldset>
+      <div class="form-group">
+          <button class="btn btn-outline-info" type=submit>Add team</button>
+      </div>
+    </form>
+   
+ </div>
   
 {% endblock %}

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile,team
 from django.contrib.auth.forms import UserCreationForm
 #
 
@@ -30,7 +30,21 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('role','schoolname', 'contactname', 'phoneno')
-        
+
+
+GENDER=[('M', 'M'),
+    ('F', 'F'), ]
+EXPERTISE=[('Beginner','Beginner'),
+ ('Intermediate','Intermediate'),('Advance','Advance')]
+
+class TeamForm(forms.ModelForm):
+    gender1= forms.CharField(label='Gender ', widget=forms.Select(choices=GENDER))
+    gender2= forms.CharField(label='Gender ', widget=forms.Select(choices=GENDER))
+    expertise1= forms.CharField(label='Expertise ', widget=forms.Select(choices=EXPERTISE))
+    expertise2= forms.CharField(label='Expertise ', widget=forms.Select(choices=EXPERTISE))
+    class Meta:
+        model = team
+        fields = ('student_name1','grade1', 'age1', 'gender1','expertise1','student_name2','grade2', 'age2', 'gender2','expertise2')       
 
 # # ROLES= [
 #     ('teacher', ' Teacher'),

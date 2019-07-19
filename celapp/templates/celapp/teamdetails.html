@@ -1,0 +1,48 @@
+{% extends 'celapp/base.html' %}
+
+{% block content %}
+   {% if team_list %}
+   <table class="table table-hover">
+	   <thead>
+	     <tr>
+	       
+		 
+	       <th scope="col"><center>Student1 name</center></th>
+	       <th scope="col"><center>grade</center></th>
+           <th scope="col"><center>age</center></th>
+           <th scope="col"><center>gender</center></th>
+           <th scope="col"><center>expertise</center></th>
+           <th scope="col"><center>Student2 name </center></th>
+	       
+	       <th scope="col"><center>grade</center></th>
+           <th scope="col"><center>age</center></th>
+           <th scope="col"><center>gender</center></th>
+           <th scope="col"><center>expertise</center></th>
+	     </tr>
+	   </thead>
+	   
+	   <tbody>
+		   {% for team in team_list %}
+	     <tr>
+	  
+		   <td><center>{{ team.student_name1 }}</center></td>
+	       <td><center>{{ team.grade1 }}</center></td>
+	       <td><center>{{ team.age1 }}</center></td>
+           <td><center>{{ team.gender1 }}</center></td>
+           <td><center>{{ team.expertise1 }}</center></td>
+           <td><center>{{ team.student_name2 }}</center></td>
+	       <td><center>{{ team.grade2 }}</center></td>
+	       <td><center>{{ team.age2 }}</center></td>
+           <td><center>{{ team.gender2 }}</center></td>
+           <td><center>{{ team.expertise2 }}</center></td>
+		
+	     </tr>
+           {% endfor %}
+	    </tbody>
+	  </table>
+   {% else %}
+       <p>No teams .</p>
+   {% endif %}
+{% endblock %}
+
+
