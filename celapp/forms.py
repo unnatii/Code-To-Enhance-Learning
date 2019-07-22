@@ -26,7 +26,12 @@ ROLES= [
 
     ]
 class ProfileForm(forms.ModelForm):
-    role= forms.CharField(label='teacher or parent ', widget=forms.Select(choices=ROLES))
+    role = forms.CharField(label='teacher or parent ', widget=forms.Select(choices=ROLES))
+
+    def save(self, user_id, *args, **kwargs):
+        self.instance.user_id = user_id
+        return super(ProfileForm, self).save(*args, **kwargs)
+
     class Meta:
         model = Profile
         fields = ('role','schoolname', 'contactname', 'phoneno')
@@ -44,7 +49,7 @@ class TeamForm(forms.ModelForm):
     expertise2= forms.CharField(label='Expertise ', widget=forms.Select(choices=EXPERTISE))
     class Meta:
         model = team
-        fields = ('student_name1','grade1', 'age1', 'gender1','expertise1','student_name2','grade2', 'age2', 'gender2','expertise2')       
+        fields = ('student_name1','grade1', 'age1', 'gender1','expertise1','student_name2','grade2', 'age2', 'gender2','expertise2')
 
 # # ROLES= [
 #     ('teacher', ' Teacher'),
