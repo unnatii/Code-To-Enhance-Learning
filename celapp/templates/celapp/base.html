@@ -21,21 +21,18 @@
 	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		{% if user.is_authenticated %}
 			<ul class="navbar-nav mr-auto">
-			    
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'teamdetails' %}">Register Team</a>
+				</li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="{% url 'board' %}"> Dashboard</a>
 			      </li>
 			      <li class="nav-item">
 			        <a class="nav-link" href="{% url 'tutor' %}">Tutorial</a>
 			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="{% url 'details' %}">Register Team</a>
-						</li>
+						
 						<li class="nav-item">
-			        <a class="nav-link" href="{% url 'teamdetails' %}">Team details</a>
-						</li>
-						<li class="nav-item">
-								<a class="nav-link" href="#">Certificate</a>
+								<a class="nav-link" href="{% url 'certificate' %}">Certificate</a>
 							</li>
 			  </ul>
 			  <ul class="nav navbar-nav navbar-right">

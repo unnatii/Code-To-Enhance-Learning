@@ -37,6 +37,10 @@ def board(request):
 @login_required
 def tutor(request):
     return render(request,'celapp/tutor.html')
+
+@login_required
+def certificate(request):
+    return render(request,'celapp/certificate.html')    
     
     
     
@@ -47,12 +51,15 @@ def register(request):
             user_form = UserForm(request.POST)
             profile_form = ProfileForm(request.POST)
             if user_form.is_valid() and profile_form.is_valid():
-                # user = user_form.save(commit=False)
-                # user.save()
-                # profile = profile_form.save(commit=False)
-                # profile.save()
+                # usr = user_form.save(commit=False)
+                # usr.save()
+                
+                # pro = profile_form.save(commit=False)
+                # pro.user=usr
+                # pro.save()
+
                 user_form.save()
-                profile_form.save()
+                profile_form.save(user_id=user_form.instance.id)
 
                 messages.success(request, 'registered successfully ')
                 return redirect('login')
