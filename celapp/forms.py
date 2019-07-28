@@ -25,13 +25,13 @@ ROLES= [
     ('Parent', 'Parent'),
 
     ]
-class ProfileForm(forms.ModelForm)
+class ProfileForm(forms.ModelForm):
     role= forms.CharField(label='teacher or parent ', widget=forms.Select(choices=ROLES))
-    
+
     def save(self, user_id, *args, **kwargs):
         self.instance.user_id = user_id
         return super(ProfileForm, self).save(*args, **kwargs)
-    
+
     class Meta:
         model = Profile
         fields = ('role','schoolname', 'contactname', 'phoneno')

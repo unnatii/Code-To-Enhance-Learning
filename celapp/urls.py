@@ -8,5 +8,5 @@ urlpatterns = [
         url(r'^tutor/', views.tutor, name='tutor'),
         url(r'^details/', views.details, name='details'),
         url(r'^teamdetails/', views.teamdetails, name='teamdetails'),
-        url(r'^certificate/', views.certificate, name='certificate'),
+        # url(r'^certificate/', views.certificate, name='certificate'),
 ]
