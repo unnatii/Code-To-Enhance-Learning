@@ -18,32 +18,27 @@ from .forms import TeamForm
 #import ipdb
 @login_required
 def index(request):
-    
+
     # current_user = auth.get_user(request)
  #    if(current_user.username=='student'):
  #        return render(request,'celapp/student.html')
   #  if(current_user.username=='evaluator'):
    #     return render(request,'celapp/evaluator.html')
    # if(current_user.username=='expert'):
-    #    return render(request,'celapp/expert.html')       
+    #    return render(request,'celapp/expert.html')
     return render(request,'celapp/index.html')
 
 @login_required
 def board(request):
     team_list=team.objects.all()
     context={ 'team_list':team_list,}
-    return render(request,'celapp/board.html',context) 
+    return render(request,'celapp/board.html',context)
 
 @login_required
 def tutor(request):
     return render(request,'celapp/tutor.html')
 
-@login_required
-def certificate(request):
-    return render(request,'celapp/certificate.html')    
-    
-    
-    
+
 def register(request):
   #  ipdb.set_trace()
   #  ipdb.set_trace(context=5)
@@ -70,8 +65,8 @@ def register(request):
         user_form = UserForm()
         profile_form = ProfileForm()
     return render(request, 'celapp/reg.html',{'user_form': user_form,'profile_form': profile_form
-        })  
-    
+        })
+
 def details(request):
     #current_user = auth.get_user(request)
     if request.method == 'POST' :
@@ -91,8 +86,8 @@ def details(request):
         s.save()
         return redirect('teamdetails')
     else:
-        team_form = TeamForm()   
-    return render(request, 'celapp/details.html',{'team_form': team_form})    
+        team_form = TeamForm()
+    return render(request, 'celapp/details.html',{'team_form': team_form})
 
 
 def teamdetails(request):
@@ -103,14 +98,14 @@ def teamdetails(request):
     else:
         team_list=team.objects.all()
         context={ 'team_list':team_list,}
-        return render(request,'celapp/teamdetails.html',context)    
+        return render(request,'celapp/teamdetails.html',context)
 # def register(request):
 #      if request.method=='POST':
 #          user.username= request.POST.get('username')
 #          user.profile.contactname= request.POST.get('contactname')
 #
-#       
-  
+#
+
 # def register(request):
 #     if request.method == 'POST':
 #             user_form = UserForm(request.POST, instance=request.user)

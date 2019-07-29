@@ -18,15 +18,15 @@ class Profile(models.Model):
     def __str__(self):
         return u"{} | {} | {} |  {} | {} ".format(self.user,self.role,self.schoolname,self.contactname,self.phoneno)
 
-    
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
+
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()
 
 
 # @receiver(post_save, sender=User)
@@ -48,7 +48,7 @@ class team(models.Model):
     expertise2=models.CharField(max_length=20)
 
 
-    
+
     def __str__(self):
         return u"{} | {} | {} |  {} | {} | {} | {} | {} |  {} | {}".format(self.student_name1,self.grade1,self.age1,self.gender1,self.expertise1,self.student_name2,self.grade2,self.age2,self.gender2,self.expertise2)
 
